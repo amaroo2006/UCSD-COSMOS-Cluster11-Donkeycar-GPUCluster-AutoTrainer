@@ -57,6 +57,7 @@ stdin, stdout, stderr = client.exec_command('launch-scipy-ml.sh -g 1 -i ucsdets/
   if stdout.channel.recv_ready():
     stdoutLines = stdout.readlines()
     print(stdoutLines)"""
+
 time.sleep(5)
 
 
@@ -65,20 +66,20 @@ print("first client started, second started")
 client2 = paramiko.SSHClient()
 client2.load_system_host_keys()
 client2.connect(hostname=host, username=user, password=password)
+
+print("getting pod name")
 stdin, stdout, stderr = client2.exec_command('kubectl get pods -o name')
-time.sleep(1)
-opt = stdout.readlines()
-opt = "".join(opt)
-opt = opt.split()
-podName = opt[0][4:]
-print(opt[0][4:])
+opt = stdout.read()
+
+podName = opt.decode('UTF-8')
+podName = podName.strip('\n')
+podName = podName[4:]
+print(podName)
 
 print("second created")
-
-stdin, stdout, stderr = client2.exec_command('kubectl exec -it {pod} -- bash -c "cd projects/d*_sim/ &&  ls && python train.py --tub data/ --model models/{modelname}.h5"'.format(pod=podName, modelname=modelName), get_pty=True)
+stdin, stdout, stderr = client2.exec_command('kubectl exec {pod} -- bash -c "cd projects/d*_sim && ls && python train.py --tubs=data/ --model=models/{model}.h5"'.format(pod=podName, model=modelName), get_pty = True)
 opt = stdout.readlines()
 opt = "".join(opt)
-opt = opt.split()
 print(opt)
 
 stdin, stdout, stderr = client2.exec_command('kubectl exec -it {pod} -- bash -c exit'.format(pod=podName))

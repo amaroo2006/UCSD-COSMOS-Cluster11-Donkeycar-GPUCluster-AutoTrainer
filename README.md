@@ -17,9 +17,12 @@ pip install argparse
 cd projects/d4_sim/
 ```
 
-#### Clone repository
+#### Clone repository and move python file to d4_sim folder
 ```
 git clone https://github.com/amaroo2006/UCSD-COSMOS-Cluster11-Donkeycar-GPUCluster-AutoTrainer.git
+cd UCSD-COSMOS-Cluster11-Donkeycar-GPUCluster-AutoTrainer/
+mv GPU_cluster_trainer.py ../
+rm -rf UCSD-COSMOS-Cluster11-Donkeycar-GPUCluster-AutoTrainer/
 ```
 ### Running the script
 Use ```python GPU_cluster_trainer.py -h``` to view the command line arguments and their usage

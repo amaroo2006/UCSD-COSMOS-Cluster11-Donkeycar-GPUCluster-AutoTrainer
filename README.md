@@ -22,6 +22,7 @@ cd projects/d4_sim/
 git clone https://github.com/amaroo2006/UCSD-COSMOS-Cluster11-Donkeycar-GPUCluster-AutoTrainer.git
 cd UCSD-COSMOS-Cluster11-Donkeycar-GPUCluster-AutoTrainer/
 mv GPU_cluster_trainer.py ../
+cd ..
 rm -rf UCSD-COSMOS-Cluster11-Donkeycar-GPUCluster-AutoTrainer/
 ```
 ### Running the script

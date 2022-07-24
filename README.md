@@ -19,7 +19,7 @@ cd projects/d4_sim/
 
 #### Clone repository
 ```
-git clone 
+git clone https://github.com/amaroo2006/UCSD-COSMOS-Cluster11-Donkeycar-GPUCluster-AutoTrainer.git
 ```
 ### Running the script
 Use ```python GPU_cluster_trainer.py -h``` to view the command line arguments and their usage

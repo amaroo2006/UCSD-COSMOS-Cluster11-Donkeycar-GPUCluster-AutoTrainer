@@ -10,6 +10,7 @@ conda activate donkey
 ```
 pip install paramiko
 pip install argparse
+pip install pexpect
 ```
 
 #### Navigate to d4_sim directory

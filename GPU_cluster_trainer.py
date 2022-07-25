@@ -77,7 +77,7 @@ podName = podName[4:]
 print(podName)
 
 print("second created")
-stdin, stdout, stderr = client2.exec_command('kubectl exec {pod} -- bash -c "cd projects/d*_sim && ls && python train.py --tubs=data/ --model=models/{model}.h5"'.format(pod=podName, model=modelName), get_pty = True)
+stdin, stdout, stderr = client2.exec_command('kubectl exec -it {pod} -- bash -c "cd projects/ && cd d* && ls && python train.py --tubs=data/ --model=models/{model}.h5"'.format(pod=podName, model=modelName), get_pty = True)
 opt = stdout.readlines()
 opt = "".join(opt)
 print(opt)
@@ -86,7 +86,7 @@ stdin, stdout, stderr = client2.exec_command('kubectl exec -it {pod} -- bash -c 
 output = stdout.readlines()
 
 
-modelTransfer = "rsync -avr -e ssh {username}@dsmlp-login.ucsd.edu:projects/d*_sim/models/{modelName}.h5 {resultFolder}/".format(username=user, modelName=modelName, resultFolder=modelFolder)
+modelTransfer = "rsync -avr -e ssh {username}@dsmlp-login.ucsd.edu:projects/d3_sim/models/{modelName}.h5 {resultFolder}/".format(username=user, modelName=modelName, resultFolder=modelFolder)
 run(modelTransfer,events={'(?i)password':'{password}\r'.format(password=password)})
 
 

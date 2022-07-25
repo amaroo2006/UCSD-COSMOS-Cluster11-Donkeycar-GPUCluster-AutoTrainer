@@ -76,6 +76,8 @@ podName = podName.strip('\n')
 podName = podName[4:]
 print(podName)
 
+time.sleep(5)
+
 print("second created")
 stdin, stdout, stderr = client2.exec_command('kubectl exec -it {pod} -- bash -c "cd projects/ && cd d* && ls && python train.py --tubs=data/ --model=models/{model}.h5"'.format(pod=podName, model=modelName), get_pty = True)
 opt = stdout.readlines()
